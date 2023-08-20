@@ -37,12 +37,30 @@
   .menu-item {
     text-align: center;
     padding: 10px 0;
+    cursor: pointer;
     
   }
 
   .menu-item:hover {
     color: #7ED321
   }
+  a{
+    text-decoration: none;
+  }
+
+
+  a:hover {
+  color: #ffffff; /* Change link color on hover */
+  text-decoration: none; /* Add underlines on hover */
+}
+
+a:visited {
+  color: #ffffff; /* Change link color for visited links */
+}
+
+#linktext{
+  color: black !important;
+}
   #content {
     margin-left: 250px;
     padding: 20px;
@@ -152,7 +170,7 @@
       <div class="menu-item" onclick="showSection('documentation')">Documentation</div>
       <div class="menu-item" onclick="showSection('installation-guide')">Installation Guide</div>
     </div>
-    <a href="index.html" text-decoration: none;><div class="menu-item" href="index.html">LOG OUT</div></a>
+    <a href="index.html"><div class="menu-item log-out" href="index.html" text-decoration: none;>LOG OUT</div></a>
   </div>
   <div id="content">
     <div id="images" class="section images-section">
@@ -193,7 +211,7 @@
     <div id="charts" class="section charts-section">
       <h2>Links Section</h2>
       <div class="task-list">
-        <a href="https://www.linkedin.com/company/pepper-programming-ab/mycompany/verification/" target="_blank" class="task">Pepper Programming AB</a>
+        <a  href="https://www.linkedin.com/company/pepper-programming-ab/mycompany/verification/" target="_blank" id="linktext"class="task">Pepper Programming AB</a>
         <a href="https://www.github.com" target="_blank" class="task">GitHub</a>
         <a href="https://www.linkedin.com" target="_blank" class="task">LinkedIn</a>
         <a href="https://www.facebook.com" target="_blank" class="task">Facebook</a>
