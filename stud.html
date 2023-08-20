@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sidebar Menu</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  #sidebar {
+    height: 100vh;
+    width: 250px;
+    background-color: #333;
+    color: white;
+    padding-top: 20px;
+    position: fixed;
+  }
+  #profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 20px;
+  }
+  #profile img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  #navigation {
+    padding: 20px;
+  }
+  .menu-item {
+    text-align: center;
+    padding: 10px 0;
+    
+  }
+
+  .menu-item:hover {
+    color: #7ED321
+  }
+  #content {
+    margin-left: 250px;
+    padding: 20px;
+  }
+  .section {
+    display: none;
+  }
+  .images-section {
+    display: block;
+  }
+  .task-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+    padding: 10px;
+  }
+  .task {
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #F3F3F3;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 14px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .low-visibility {
+    opacity: 0.5;
+  }
+  .completed {
+    background-color: #7ED321;
+    color: white;
+    font-weight: bold;
+  }
+  .completed-tasks {
+    margin-top: 10px;
+  }
+  .charts-section {
+    display: none;
+  }
+  .calendar-section {
+    display: none;
+  }
+  .documentation-section {
+    display: none;
+  }
+  .installation-guide-section {
+    display: none;
+  }
+  .guide-card {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+  .guide-card img {
+    max-width: 100%;
+    margin-right: 20px;
+    border-radius: 10px;
+  }
+  .weekly-task-section {
+    display: block;
+  }
+  .submit-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .submit-btn {
+    background-color: #7ED321;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .input-field {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+  }
+
+  .brand{
+    text-align: center;
+  }
+  
+</style>
+</head>
+<body>
+  <div id="sidebar">
+    <div id="profile">
+      <h2 class="brand">Pepper Programming ++</h2>
+      <img src="https://www.disneyplusinformer.com/wp-content/uploads/2021/06/Luca-Profile-Avatars-3.png" alt="Profile Avatar">
+      <h3>PPP001</h3>
+      
+    </div>
+    <div id="navigation">
+      <div class="menu-item" onclick="showSection('images')">Profile</div>
+      <div class="menu-item" onclick="showSection('tasks')">Weekly Tasks</div>
+      <div class="menu-item" onclick="showSection('charts')">Links</div>
+      <div class="menu-item" onclick="showSection('calendar')">Calendar</div>
+      <div class="menu-item" onclick="showSection('documentation')">Documentation</div>
+      <div class="menu-item" onclick="showSection('installation-guide')">Installation Guide</div>
+    </div>
+    <a href="index.html" text-decoration: none;><div class="menu-item" href="index.html">LOG OUT</div></a>
+  </div>
+  <div id="content">
+    <div id="images" class="section images-section">
+      <h2>Student Dashboard</h2>
+      <p>Welcome to your student dashboard, Pepper Programming ++!</p>
+      <p>Here you can find important information and updates related to your programming journey.</p>
+    </div>
+    <div id="tasks" class="section">
+      <h2>Pre Task</h2>
+      <div class="task-list">
+        <button class="task" onclick="toggleTaskVisibility(this)">Join WhatsApp group</button>
+        <button class="task" onclick="toggleTaskVisibility(this)">Join the Notion Team Space</button>
+        <button class="task" onclick="toggleTaskVisibility(this)">Get the GitHub Invite</button>
+        <!-- ... other tasks ... -->
+      </div>
+      <h2>Weekly Tasks</h2>
+      <div class="weekly-task-section">
+        <div class="task-list" id="weeklyTaskList">
+          <button class="task" ondblclick="moveToCompletedTasks(this)">Watch Git video</button>
+          <button class="task" ondblclick="moveToCompletedTasks(this)">Install Git</button>
+          <button class="task" ondblclick="moveToCompletedTasks(this)">clone, configure, edit, push git tasks</button>
+          <button class="task" ondblclick="moveToCompletedTasks(this)">create Index file</button>
+          <button class="task" ondblclick="moveToCompletedTasks(this)">Install Live server extension</button>
+          <!-- ... other tasks ... -->
+        </div>
+      </div>
+      <div class="completed-tasks">
+        <h3>Completed Tasks</h3>
+        <div class="task-list" id="completedTaskList">
+          <!-- Completed tasks will go here -->
+        </div>
+      </div>
+      <div class="submit-form">
+        <input type="text" class="input-field" id="studentIdInput" placeholder="Student ID">
+        <button class="submit-btn" onclick="submitCompletedTasks()">Submit</button>
+      </div>
+    </div>
+    <div id="charts" class="section charts-section">
+      <h2>Links Section</h2>
+      <div class="task-list">
+        <a href="https://www.linkedin.com/company/pepper-programming-ab/mycompany/verification/" target="_blank" class="task">Pepper Programming AB</a>
+        <a href="https://www.github.com" target="_blank" class="task">GitHub</a>
+        <a href="https://www.linkedin.com" target="_blank" class="task">LinkedIn</a>
+        <a href="https://www.facebook.com" target="_blank" class="task">Facebook</a>
+      </div>
+    </div>
+    <div id="calendar" class="section calendar-section">
+      <h2>Calendar Section</h2>
+      <p>calendar will visible here. session timing and other things</p>
+      <!-- Placeholder for calendar -->
+    </div>
+    <div id="documentation" class="section documentation-section">
+      <h2>Documentation Section</h2>
+      <!-- Placeholder for documentation -->
+    </div>
+    <div id="installation-guide" class="section installation-guide-section">
+      <h2>Installation Guide</h2>
+      <h2>git config</h2>
+       <div class="guide-card">
+          <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.ashishvishwakarma.com%2Fassets%2F2018-06-16%2Fgit-config.png&f=1&nofb=1&ipt=15f523a9bf70a843d988a2532acdb7379ac7b0a1d1ed718b6c3d6b84c6bb2e8d&ipo=images" alt="Installation Guide Image">
+          <p>
+            git config is a command in Git that is used to configure various settings for your Git repository or your user profile. It allows you to set or modify configuration options that control how Git behaves in different contexts.
+
+        In a concise explanation:
+
+        git config is used to set or modify Git configuration settings.
+
+        example : git config --global user.name "Your Name"
+
+         </p>
+        </div>
+
+        <h2>git add commit - m "your updates"</h2>
+       <div class="guide-card">
+          <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.javatpoint.com%2Ftutorial%2Fgit%2Fimages%2Fgit-add.png&f=1&nofb=1&ipt=57673e6c042ce4c517a02e79ff4f1b7838afa99cc0223ca1a7f075f30f34089e&ipo=images" alt="Installation Guide Image">
+          <p>
+            git add . is a command used in the Git version control system. It's used to stage (prepare) all the changes you've made in your current working directory and its subdirectories for the next commit. Staging means that you're telling Git to include these changes in the upcoming commit snapshot.
+
+            In a more concise explanation:
+            
+            git add . stages all changes in the current directory and its subdirectories for the next commit.
+         </p>
+        </div>
+    </div>
+  </div>
+
+  
+  <script>
+    let completedTaskLabels = [];
+
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => section.style.display = 'none');
+      document.getElementById(sectionId).style.display = 'block';
+    }
+
+    function toggleTaskVisibility(button) {
+      button.classList.toggle('low-visibility');
+    }
+
+    function moveToCompletedTasks(button) {
+      button.parentNode.removeChild(button);
+      const completedTasks = document.querySelector('.completed-tasks .task-list');
+      completedTasks.appendChild(button);
+      button.classList.remove('low-visibility');
+      button.classList.add('completed');
+      button.ondblclick = null; // Remove double-click handler
+      completedTaskLabels.push(button.textContent);
+    }
+
+    function submitCompletedTasks() {
+      const studentIdInput = document.getElementById('studentIdInput').value;
+      if (studentIdInput && completedTaskLabels.length > 0) {
+        // Here you can add code to send data to the backend (not included in this code)
+        const submissionData = {
+          studentId: studentIdInput,
+          completedTasks: completedTaskLabels
+        };
+        console.log(submissionData);
+        // Reset completed task labels array and input field
+        completedTaskLabels = [];
+        document.getElementById('studentIdInput').value = '';
+      }
+    }
+  </script>
+</body>
+</html>
